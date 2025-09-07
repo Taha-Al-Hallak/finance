@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Create Account</title>
+  <link rel="stylesheet" href="Create Account.css" />
+</head>
+<body>
+  <h1 class="page-title">Create Account</h1>
+  <div class="container">
+    <form>
+      <label for="fullname">Full Name</label>
+      <input type="text" id="fullname" placeholder="example@example.com" />
+
+      <label for="email">Email</label>
+      <input type="email" id="email" placeholder="example@example.com" />
+
+      <label for="mobile">Mobile Number</label>
+      <input type="tel" id="mobile" placeholder="+ 123 456 789" />
+
+      <label for="dob">Date Of Birth</label>
+      <input type="text" id="dob" placeholder="DD / MM /YYY" />
+
+      <label for="password">Password</label>
+      <div class="password-container">
+        <input type="password" id="password" />
+        <span class="toggle-password">&#128065;</span>
+      </div>
+
+      <label for="confirm-password">Confirm Password</label>
+      <div class="password-container">
+        <input type="password" id="confirm-password" />
+        <span class="toggle-password">&#128065;</span>
+      </div>
+
+      <p class="terms">
+        By continuing, you agree to
+        <a href="#">Terms of Use</a> and
+        <a href="#">Privacy Policy.</a>
+      </p>
+
+      <button type="submit" >Sign Up</button>
+
+      <p class="login-link">
+        Already have an account?
+        <a href="#">Log In</a>
+      </p>
+    </form>
+  </div>
+</body>
+</html>
+

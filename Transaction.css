@@ -1,0 +1,207 @@
+* {
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: #E6F2E8;
+  color: #000;
+}
+
+.container {
+  max-width: 400px;
+  margin: auto;
+  background: #00B386;
+  border-radius: 30px 30px 0 0;
+  padding: 20px;
+  padding-bottom: 100px; /* مساحة للفوتر */
+  color: #000;
+}
+.container .top-header{
+    display: flex;
+    justify-content: space-between;
+}
+.container .top-header .title{
+    font-weight: bold;
+    font-size: 1.4rem;
+}
+.container .top-header .back {
+    font-weight: 700; /* أو 800 */
+    font-size: 1.7em; /* ممكن تكبر الحجم شوي عشان يبين أفضل */
+}
+.header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: 700;
+  font-size: 1.2em;
+  margin-bottom: 10px;
+}
+
+.balance-box {
+  background: #fff;
+  padding: 15px;
+  border-radius: 15px;
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+.balance-box .balance-label {
+  font-size: 0.9em;
+  color: #444;
+}
+
+.balance-box .balance-main {
+  font-size: 1.6em;
+  font-weight: bold;
+}
+
+.balance-container {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 15px;
+}
+
+.balance-item {
+  flex: 1;
+}
+
+.balance-summary {
+  background: #F1FFF3;
+  border-radius: 15px;
+  padding: 20px;
+  text-align: center;
+  margin: 20px auto 15px;
+  width: 90%;
+  max-width: 300px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.balance-summary .summary-title {
+  font-size: 1em;
+  color: #666;
+  margin-bottom: 10px; /* المسافة بين العنوان والرقم */
+}
+
+.balance-summary .summary-amount {
+  font-size: 2em;         /* أكبر */
+  font-weight: 800;       /* عريض جدًا */
+  color: #000;
+}
+
+.balance-container .balance-item:first-child .balance-amount {
+  color: white;
+}
+
+
+.expense {
+  color: #3366FF;
+}
+
+.progress-bar {
+  margin-top: 15px;
+  background: #004B33;
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+.progress {
+  background: #33D68F;
+  width: 30%;
+  height: 10px;
+}
+
+.progress-text {
+  margin-top: 5px;
+  font-weight: 600;
+  font-size: 0.9em;
+}
+
+.transactions h3 {
+  margin: 25px 0 10px;
+  font-size: 1.1em;
+  font-weight: 700;
+}
+.transactions{
+    background-color: #F1FFF3;
+    padding:  5px ;
+    border-radius: 10px;
+}
+.transaction {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+  gap: 15px;
+}
+
+.transaction-icon {
+  padding: 12px;
+  border-radius: 50%;
+  color: white;
+  font-size: 1.2em;
+  min-width: 50px;
+  text-align: center;
+}
+
+.transaction-icon.blue {
+  background: #3399FF;
+}
+
+.transaction-info {
+  flex: 1;
+  font-size: 0.9em;
+}
+
+.transaction-info strong {
+  display: block;
+  font-weight: 700;
+}
+
+.transaction-date {
+  color: #3366FF;
+  font-weight: 700;
+  font-size: 0.85em;
+}
+
+.transaction-category {
+  font-size: 0.8em;
+  color: #00664d;
+}
+
+.transaction-amount {
+  font-weight: 700;
+}
+
+.transaction-amount.negative {
+  color: #3366FF;
+}
+
+.bottom-nav {
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  max-width: 400px;
+  background: #D9F0E4;
+  display: flex;
+  justify-content: space-around;
+  padding: 15px 0;
+  border-radius: 20px 20px 0 0;
+  z-index: 999;
+}
+
+.bottom-nav button {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 1.4em;
+  color: #00664d;
+}
+
+.bottom-nav button.active {
+  background: #00B386;
+  color: #fff;
+  border-radius: 10px;
+  padding: 5px 12px;
+}

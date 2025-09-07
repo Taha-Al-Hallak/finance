@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Login Screen</title>
+<link rel="stylesheet" href="car.css" />
+</head>
+<body>
+  <div class="wrapper">
+    <h1 class="welcome-text">Welcome</h1>
+
+    <div class="container">
+      <form>
+        <label for="email">Username Or Email</label>
+        <input type="email" id="email" placeholder="example@example.com" />
+
+        <label for="password">Password</label>
+        <div class="password-wrapper">
+          <input type="password" id="password" placeholder="••••••••" />
+          <span class="eye-icon">&#128065;</span>
+        </div>
+
+        <button type="submit" class="login-btn">Log In</button>
+        <a href="#" class="forgot-password" id="forgot-password">Forgot Password?</a>
+
+        <button type="button" class="signup-btn" id="Sign-Up">Sign Up</button>
+
+        <p class="fingerprint-text">
+          Use <a href="#">Fingerprint</a> To Access
+        </p>
+
+        <div class="social-section">
+          <p>or sign up with</p>
+          <div class="social-icons">
+            <div>f</div>
+            <div>G</div>
+          </div>
+        </div>
+
+        <p class="signup-link">
+          Don't have an account? <a href="#">Sign Up</a>
+        </p>
+      </form>
+    </div>
+  </div>
+
+  <script src="main.js"></script>
+</body>
+</html>

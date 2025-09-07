@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Transaction</title>
+  <link rel="stylesheet" href="Transaction.css">
+</head>
+<body>
+
+<div class="container">
+  <div class="top-header">
+    <div class="back">←</div>
+    <div class="title">Transaction</div>
+    <div class="bell">🔔</div>
+  </div>
+
+  <div class="balance-summary">
+    <div class="balance-title">Total Balance</div>
+    <div class="balance-amount">$7,783.00</div>
+  </div>
+
+  <div class="balance-container">
+    <div class="balance-item">
+      <div class="balance-title">🗂 Total Balance</div>
+      <div class="balance-amount">$7,783.00</div>
+    </div>
+    <div class="balance-item" style="text-align:right;">
+      <div class="balance-title">🗂 Total Expense</div>
+      <div class="balance-amount expense">-$1,187.40</div>
+    </div>
+  </div>
+
+  <div class="progress-bar">
+    <div class="progress"></div>
+  </div>
+  <div class="progress-text">30% Of Your Expenses, Looks Good.</div>
+
+  <div class="transactions">
+    <h3>April</h3>
+    <div class="transaction">
+      <div class="transaction-icon">💼</div>
+      <div class="transaction-info">
+        <strong>Salary</strong>
+        <div class="transaction-date">18:27 - April 30</div>
+      </div>
+      <div class="transaction-category">Monthly</div>
+      <div class="transaction-amount">$4,000.00</div>
+    </div>
+    <div class="transaction">
+      <div class="transaction-icon">🛍️</div>
+      <div class="transaction-info">
+        <strong>Groceries</strong>
+        <div class="transaction-date">17:00 - April 24</div>
+      </div>
+      <div class="transaction-category">Pantry</div>
+      <div class="transaction-amount negative">-$100.00</div>
+    </div>
+    <div class="transaction">
+      <div class="transaction-icon">🏠</div>
+      <div class="transaction-info">
+        <strong>Rent</strong>
+        <div class="transaction-date">8:30 - April 15</div>
+      </div>
+      <div class="transaction-category">Rent</div>
+      <div class="transaction-amount negative">-$674.40</div>
+    </div>
+    <div class="transaction">
+      <div class="transaction-icon">🚗</div>
+      <div class="transaction-info">
+        <strong>Transport</strong>
+        <div class="transaction-date">9:30 - April 08</div>
+      </div>
+      <div class="transaction-category">Fuel</div>
+      <div class="transaction-amount negative">-$4.13</div>
+    </div>
+
+    <h3>March</h3>
+    <div class="transaction">
+      <div class="transaction-icon">🍽️</div>
+      <div class="transaction-info">
+        <strong>Food</strong>
+        <div class="transaction-date">19:30 - March 31</div>
+      </div>
+      <div class="transaction-category">Dinner</div>
+      <div class="transaction-amount negative">-$70.40</div>
+    </div>
+  </div>
+</div>
+
+<div class="bottom-nav">
+  <button id="active">🏠</button>
+  <button>📊</button>
+  <button class="active">↔️</button>
+  <button>📚</button>
+  <button>👤</button>
+</div>
+
+
+<script src="main.js"></script>
+</body>
+</html>
