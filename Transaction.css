@@ -14,7 +14,7 @@ body {
   background: #00B386;
   border-radius: 30px 30px 0 0;
   padding: 20px;
-  padding-bottom: 100px; /* مساحة للفوتر */
+  padding-bottom: 100px; 
   color: #000;
 }
 .container .top-header{
@@ -26,8 +26,8 @@ body {
     font-size: 1.4rem;
 }
 .container .top-header .back {
-    font-weight: 700; /* أو 800 */
-    font-size: 1.7em; /* ممكن تكبر الحجم شوي عشان يبين أفضل */
+    font-weight: 700; 
+    font-size: 1.7em; 
 }
 .header-row {
   display: flex;
@@ -80,12 +80,12 @@ body {
 .balance-summary .summary-title {
   font-size: 1em;
   color: #666;
-  margin-bottom: 10px; /* المسافة بين العنوان والرقم */
+  margin-bottom: 10px; 
 }
 
 .balance-summary .summary-amount {
-  font-size: 2em;         /* أكبر */
-  font-weight: 800;       /* عريض جدًا */
+  font-size: 2em;         
+  font-weight: 800;       
   color: #000;
 }
 
