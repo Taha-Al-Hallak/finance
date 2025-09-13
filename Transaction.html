@@ -15,26 +15,29 @@
     <div class="bell">🔔</div>
   </div>
 
-  <div class="balance-summary">
-    <div class="balance-title">Total Balance</div>
-    <div class="balance-amount">$7,783.00</div>
-  </div>
+ <div class="balance-summary">
+  <div class="balance-title">Total Balance</div>
+  <div class="balance-amount" id="totalBalance">$0.00</div>
+</div>
 
-  <div class="balance-container">
-    <div class="balance-item">
-      <div class="balance-title">🗂 Total Balance</div>
-      <div class="balance-amount">$7,783.00</div>
-    </div>
-    <div class="balance-item" style="text-align:right;">
-      <div class="balance-title">🗂 Total Expense</div>
-      <div class="balance-amount expense">-$1,187.40</div>
-    </div>
+<div class="balance-container">
+  <div class="balance-item">
+    <div class="balance-title">🗂 Total Balance</div>
+    <div class="balance-amount" id="totalBalance2">$0.00</div>
   </div>
+  <div class="balance-item" style="text-align:right;">
+    <div class="balance-title">🗂 Total Expense</div>
+    <div class="balance-amount expense" id="totalExpense">-$0.00</div>
+  </div>
+</div>
 
-  <div class="progress-bar">
-    <div class="progress"></div>
-  </div>
-  <div class="progress-text">30% Of Your Expenses, Looks Good.</div>
+<div class="progress-bar">
+  <div class="progress" id="transactionProgressBar"></div>
+</div>
+<div class="progress-text" id="transactionProgressText">Loading...</div>
+
+
+
 
   <div class="transactions">
     <h3>April</h3>
