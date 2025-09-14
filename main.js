@@ -1,5 +1,4 @@
 document.addEventListener("DOMContentLoaded", function () {
-  
   const signUpBtn = document.getElementById("Sign-Up");
   const forgotBtn = document.getElementById("forgot-password");
   const tahaBtn = document.getElementById("taha");
@@ -8,15 +7,12 @@ document.addEventListener("DOMContentLoaded", function () {
   if (signUpBtn) {
     signUpBtn.addEventListener("click", () => window.location.href = "Create Account.html");
   }
-
   if (forgotBtn) {
     forgotBtn.addEventListener("click", () => window.location.href = "Forgot Password.html");
   }
-
   if (tahaBtn) {
     tahaBtn.addEventListener("click", () => window.location.href = "Transaction.html");
   }
-
   if (activbtn) {
     activbtn.addEventListener("click", () => window.location.href = "Home.html");
   }
@@ -34,20 +30,17 @@ document.addEventListener("DOMContentLoaded", function () {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email, password })
       })
-      .then(res => res.json())
-      .then(data => {
-        if (data.status === 'success') {
-          localStorage.setItem('user', JSON.stringify(data.data.user));
-          localStorage.setItem('token', data.token);
-          window.location.href = 'Home.html';
-        } else {
-          alert('فشل تسجيل الدخول: ' + (data.message || 'بيانات غير صحيحة'));
-        }
-      })
-      .catch(err => {
-        console.error('خطأ:', err);
-        alert('تعذر الاتصال بالسيرفر');
-      });
+        .then(res => res.json())
+        .then(data => {
+          if (data.status === 'success') {
+            localStorage.setItem('user', JSON.stringify(data.data.user));
+            localStorage.setItem('token', data.token);
+            window.location.href = 'Home.html';
+          } else {
+            alert('فشل تسجيل الدخول: ' + (data.message || 'بيانات غير صحيحة'));
+          }
+        })
+        .catch(() => alert('تعذر الاتصال بالسيرفر'));
     });
   }
 
@@ -69,35 +62,30 @@ document.addEventListener("DOMContentLoaded", function () {
         return;
       }
 
-      const stridata = {
-        name: fullname,
-        email,
-        password,
-        passwordConfirm: confirmpassword,
-        dateOfBirth: dob,
-        mobileNumber: mobile
-      };
-
       fetch('https://finance-j2lk.onrender.com/api/users/signup', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(stridata)
+        body: JSON.stringify({
+          name: fullname,
+          email,
+          password,
+          passwordConfirm: confirmpassword,
+          dateOfBirth: dob,
+          mobileNumber: mobile
+        })
       })
-      .then(res => res.json())
-      .then(data => {
-        if (data.status === 'success') {
-          alert('تم إنشاء الحساب بنجاح');
-          localStorage.setItem('user', JSON.stringify(data.data.user));
-          localStorage.setItem('token', data.token);
-          window.location.href = 'Home.html';
-        } else {
-          alert('فشل تسجيل الحساب: ' + (data.message || 'بيانات غير صحيحة'));
-        }
-      })
-      .catch(err => {
-        console.error('خطأ:', err);
-        alert('تعذر الاتصال بالسيرفر');
-      });
+        .then(res => res.json())
+        .then(data => {
+          if (data.status === 'success') {
+            alert('تم إنشاء الحساب بنجاح');
+            localStorage.setItem('user', JSON.stringify(data.data.user));
+            localStorage.setItem('token', data.token);
+            window.location.href = 'Home.html';
+          } else {
+            alert('فشل تسجيل الحساب: ' + (data.message || 'بيانات غير صحيحة'));
+          }
+        })
+        .catch(() => alert('تعذر الاتصال بالسيرفر'));
     });
   }
 
@@ -106,7 +94,6 @@ document.addEventListener("DOMContentLoaded", function () {
   if (nextStepBtn) {
     nextStepBtn.addEventListener('click', function () {
       const email = document.getElementById('email').value.trim();
-
       if (!email) {
         alert('يرجى إدخال بريد إلكتروني صحيح');
         return;
@@ -117,39 +104,38 @@ document.addEventListener("DOMContentLoaded", function () {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email })
       })
-      .then(res => res.json())
-      .then(data => {
-        if (data.status === 'success') {
-          alert('تم إرسال رابط إعادة تعيين كلمة المرور');
-          window.location.href = 'New password.html';
-        } else {
-          alert('حدث خطأ: ' + (data.message || 'يرجى المحاولة لاحقًا'));
-        }
-      })
-      .catch(error => {
-        console.error('خطأ:', error);
-        alert('فشل الاتصال بالسيرفر');
-      });
+        .then(res => res.json())
+        .then(data => {
+          if (data.status === 'success') {
+            alert('تم إرسال رابط إعادة تعيين كلمة المرور');
+            window.location.href = 'new-password.html';
+          } else {
+            alert('حدث خطأ: ' + (data.message || 'يرجى المحاولة لاحقًا'));
+          }
+        })
+        .catch(() => alert('فشل الاتصال بالسيرفر'));
     });
   }
-
 
   const signupLink = document.querySelector('.signup');
   if (signupLink) {
     signupLink.addEventListener('click', () => {
-      window.location.href = 'Create Account.html';
+      window.location.href = 'create-account.html';
     });
   }
 
-  //تحقق من التوكن
+  // التحقق من التوكن والصفحة
   const token = localStorage.getItem('token');
-  if (!token && (window.location.href.includes("Home.html") || window.location.href.includes("Transaction.html"))) {
+  const href = window.location.href.toLowerCase();
+  if (!token && (href.includes("home.html") || href.includes("transaction.html"))) {
     alert('يرجى تسجيل الدخول أولاً');
-    window.location.href = 'login.html';
+    window.location.href = 'index.html';
     return;
   }
 
-  // التاريخ
+  // عرض المعاملات إن وُجد التوكن
+  let transactions = [];
+
   function formatDate(dateStr) {
     const date = new Date(dateStr);
     const hours = date.getHours().toString().padStart(2, '0');
@@ -159,7 +145,6 @@ document.addEventListener("DOMContentLoaded", function () {
     return `${hours}:${minutes} - ${monthName} ${day}`;
   }
 
-  // --- دالة عرض المعاملات ---
   function renderTransactions(list, container) {
     if (!container) return;
     container.innerHTML = '';
@@ -187,101 +172,114 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
-  // تحميل المعاملات حسب الصفحة
-  let transactions = [];
+  if (token) {
+    fetch('https://finance-j2lk.onrender.com/api/transactions', {
+      headers: { Authorization: `Bearer ${token}` }
+    })
+      .then(res => res.json())
+      .then(data => {
+        if (data.status === 'success') {
+          transactions = data.data.transactions;
 
-  fetch('https://finance-j2lk.onrender.com/api/transactions', {
-    headers: {
-      Authorization: `Bearer ${token}`
-    }
-  })
-  .then(res => res.json())
-  .then(data => {
-    if (data.status === 'success') {
-      transactions = data.data.transactions;
+          const totalBalanceValue = transactions.reduce((acc, tx) => tx.type === 'income' ? acc + tx.amount : acc - tx.amount, 0);
+          const totalExpenseValue = transactions.reduce((acc, tx) => tx.type === 'expense' ? acc + tx.amount : acc, 0);
+          const progressPercent = totalBalanceValue > 0 ? Math.min((totalExpenseValue / totalBalanceValue) * 100, 100) : 0;
+          const progressText = `Used ${progressPercent.toFixed(1)}% of your balance`;
 
-      const totalBalanceValue = transactions.reduce((acc, tx) => {
-        return tx.type === 'income' ? acc + tx.amount : acc - tx.amount;
-      }, 0);
+          // Home page elements
+          const balanceEl = document.getElementById('balance');
+          const expenseEl = document.getElementById('expense');
+          const progressEl = document.getElementById('homeProgressBar');
+          const progressTextEl = document.getElementById('homeProgressText');
+          const transactionsContainer = document.querySelector('.transactions');
 
-      const totalExpenseValue = transactions.reduce((acc, tx) => {
-        return tx.type === 'expense' ? acc + tx.amount : acc;
-      }, 0);
+          if (balanceEl && expenseEl && progressEl && progressTextEl && transactionsContainer) {
+            balanceEl.textContent = `$${totalBalanceValue.toFixed(2)}`;
+            expenseEl.textContent = `-$${totalExpenseValue.toFixed(2)}`;
+            progressEl.style.width = progressPercent + '%';
+            progressTextEl.textContent = progressText;
+            renderTransactions(transactions, transactionsContainer);
+          }
 
-      const progressPercent = totalBalanceValue > 0 ? Math.min((totalExpenseValue / totalBalanceValue) * 100, 100) : 0;
-      const progressText = `Used ${progressPercent.toFixed(1)}% of your balance`;
+          // Transaction page elements
+          const transactionBalanceEl = document.getElementById('totalBalance');
+          const transactionBalanceEl2 = document.getElementById('totalBalance2');
+          const transactionExpenseEl = document.getElementById('totalExpense');
+          const transactionProgressBarEl = document.getElementById('transactionProgressBar');
+          const transactionProgressTextEl = document.getElementById('transactionProgressText');
 
-      // Home
-      const balanceEl = document.getElementById('balance');
-      const expenseEl = document.getElementById('expense');
-      const progressEl = document.getElementById('homeProgressBar');
-      const progressTextEl = document.getElementById('homeProgressText');
-      const transactionsContainer = document.querySelector('.transactions');
+          if (transactionBalanceEl && transactionExpenseEl && transactionProgressBarEl && transactionProgressTextEl) {
+            transactionBalanceEl.textContent = `$${totalBalanceValue.toFixed(2)}`;
+            if (transactionBalanceEl2) transactionBalanceEl2.textContent = `$${totalBalanceValue.toFixed(2)}`;
+            transactionExpenseEl.textContent = `-$${totalExpenseValue.toFixed(2)}`;
+            transactionProgressBarEl.style.width = progressPercent + '%';
+            transactionProgressTextEl.textContent = progressText;
+            renderTransactions(transactions, transactionsContainer);
+          }
 
-      if (balanceEl && expenseEl && progressEl && progressTextEl && transactionsContainer) {
-        balanceEl.textContent = `$${totalBalanceValue.toFixed(2)}`;
-        expenseEl.textContent = `-$${totalExpenseValue.toFixed(2)}`;
-        progressEl.style.width = progressPercent + '%';
-        progressTextEl.textContent = progressText;
-        renderTransactions(transactions, transactionsContainer);
-      }
+          // فلترة المعاملات حسب الزر
+          ['daily-btn', 'weekly-btn', 'monthly-btn', 'yearly-btn', 'all-btn'].forEach(id => {
+            const btn = document.getElementById(id);
+            if (btn) {
+              btn.addEventListener('click', () => {
+                // إزالة الكلاس من الكل
+                ['daily-btn', 'weekly-btn', 'monthly-btn', 'yearly-btn', 'all-btn'].forEach(b => {
+                  const el = document.getElementById(b);
+                  if (el) el.classList.remove('active');
+                });
+                btn.classList.add('active');
 
-      // Transaction
-      const transactionBalanceEl = document.getElementById('totalBalance');
-      const transactionBalanceEl2 = document.getElementById('totalBalance2');
-      const transactionExpenseEl = document.getElementById('totalExpense');
-      const transactionProgressBarEl = document.getElementById('transactionProgressBar');
-      const transactionProgressTextEl = document.getElementById('transactionProgressText');
-      const transactionContainer = document.querySelector('.transactions');
+                let filteredTx = [];
+                const now = new Date();
 
-      if (transactionBalanceEl && transactionExpenseEl && transactionProgressBarEl && transactionProgressTextEl && transactionContainer) {
-        transactionBalanceEl.textContent = `$${totalBalanceValue.toFixed(2)}`;
-        if (transactionBalanceEl2) transactionBalanceEl2.textContent = `$${totalBalanceValue.toFixed(2)}`;
-        transactionExpenseEl.textContent = `-$${totalExpenseValue.toFixed(2)}`;
-        transactionProgressBarEl.style.width = progressPercent + '%';
-        transactionProgressTextEl.textContent = progressText;
-        renderTransactions(transactions, transactionContainer);
-      }
+                switch (id) {
+                  case 'daily-btn':
+                    filteredTx = transactions.filter(tx => new Date(tx.date).toDateString() === now.toDateString());
+                    break;
+                  case 'weekly-btn':
+                    const weekStart = new Date(now);
+                    weekStart.setDate(now.getDate() - now.getDay());
+                    const weekEnd = new Date(weekStart);
+                    weekEnd.setDate(weekStart.getDate() + 6);
+                    filteredTx = transactions.filter(tx => {
+                      const txDate = new Date(tx.date);
+                      return txDate >= weekStart && txDate <= weekEnd;
+                    });
+                    break;
+                  case 'monthly-btn':
+                    filteredTx = transactions.filter(tx => {
+                      const txDate = new Date(tx.date);
+                      return txDate.getMonth() === now.getMonth() && txDate.getFullYear() === now.getFullYear();
+                    });
+                    break;
+                  case 'yearly-btn':
+                    filteredTx = transactions.filter(tx => new Date(tx.date).getFullYear() === now.getFullYear());
+                    break;
+                  case 'all-btn':
+                    filteredTx = [...transactions];
+                    break;
+                }
 
-      // فلترة 
-      ['daily-btn', 'weekly-btn', 'monthly-btn'].forEach(id => {
-        const btn = document.getElementById(id);
-        if (btn) {
-          btn.addEventListener('click', () => {
-            const now = new Date();
-            let filtered = [];
-
-            if (id === 'daily-btn') {
-              filtered = transactions.filter(tx => new Date(tx.date).toDateString() === now.toDateString());
-            } else if (id === 'weekly-btn') {
-              filtered = transactions.filter(tx => (now - new Date(tx.date)) / (1000 * 60 * 60 * 24) <= 7);
-            } else if (id === 'monthly-btn') {
-              filtered = transactions.filter(tx => {
-                const txDate = new Date(tx.date);
-                return txDate.getFullYear() === now.getFullYear() && txDate.getMonth() === now.getMonth();
+                renderTransactions(filteredTx, transactionsContainer);
               });
             }
-
-            document.querySelectorAll('.toggle button').forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
-
-            const container = transactionContainer || transactionsContainer;
-            renderTransactions(filtered, container);
           });
-        }
-      });
 
-    } else {
-      alert('تعذر جلب المعاملات، يرجى تسجيل الدخول مرة أخرى.');
-      localStorage.clear();
-      window.location.href = 'login.html';
-    }
-  })
-  .catch(err => {
-    console.error('خطأ في جلب المعاملات:', err);
-    alert('تعذر الاتصال بالسيرفر، يرجى المحاولة لاحقًا.');
-  });
+        } else {
+          alert('فشل في التحقق من التوكن. يرجى تسجيل الدخول مجددًا.');
+          localStorage.clear();
+          window.location.href = 'index.html';
+        }
+      })
+      .catch(err => {
+        console.error('خطأ في جلب المعاملات:', err);
+        alert('فشل الاتصال بالخادم. حاول مجددًا لاحقًا.');
+      });
+  }
 });
+
+
+
 
 
 
