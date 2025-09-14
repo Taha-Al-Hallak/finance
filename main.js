@@ -145,16 +145,32 @@ document.addEventListener("DOMContentLoaded", function () {
     return `${hours}:${minutes} - ${monthName} ${day}`;
   }
 
-  function renderTransactions(list, container) {
-    if (!container) return;
-    container.innerHTML = '';
+function renderTransactions(list, container) {
+  if (!container) return;
 
-    if (list.length === 0) {
-      container.innerHTML = '<p>لا توجد معاملات لعرضها.</p>';
-      return;
-    }
+  container.innerHTML = '';
 
-    list.forEach(tx => {
+  if (list.length === 0) {
+    container.innerHTML = '<p>لا توجد معاملات لعرضها.</p>';
+    return;
+  }
+
+  // تجميع المعاملات حسب الشهر
+  const grouped = {};
+  list.forEach(tx => {
+    const date = new Date(tx.date);
+    const key = `${date.toLocaleString('default', { month: 'long' })} ${date.getFullYear()}`;
+    if (!grouped[key]) grouped[key] = [];
+    grouped[key].push(tx);
+  });
+
+  // عرض المعاملات حسب الأشهر
+  Object.keys(grouped).forEach(month => {
+    const monthTitle = document.createElement('h3');
+    monthTitle.textContent = month;
+    container.appendChild(monthTitle);
+
+    grouped[month].forEach(tx => {
       const txDiv = document.createElement('div');
       txDiv.className = 'transaction';
       txDiv.innerHTML = `
@@ -170,7 +186,9 @@ document.addEventListener("DOMContentLoaded", function () {
       `;
       container.appendChild(txDiv);
     });
-  }
+  });
+}
+
 
   if (token) {
     fetch('https://finance-j2lk.onrender.com/api/transactions', {
